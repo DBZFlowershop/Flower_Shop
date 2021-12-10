@@ -25,41 +25,22 @@
 	<div class="row">
   <div class="col-lg-2"></div>
   <div class="col-lg-8">
-    <!-- <div id="header">
-      <p style="font-size: 20pt; ">
-        FLOWER SHOP
-      </p>
-    </div>  -->
-
-
-    <!-- <ul>
-      <li><a href="#">Join</a></li>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Flower</a></li>
-      <li><a href="#" id="navbardrop" data-toggle="dropdown">Recommend</a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="situation.html">Contextual</a>
-          <a class="dropdown-item" href="spring.html">Seasonal</a>
-        </div>
-      </li>
-      <li><a href="#">LOGIN</a></li>
-    </ul> -->
-    <button onclick="jo()" style="margin-top: 200px;">Join</button>
+    <button onclick="location.href='login_ck.php'" style="margin-top: 200px;">Join</button>
     <div class="jumbotron" style="padding-top: 20px;">
       <h3 style="text-align: center;">Login</h3><br>
-      <form action="main.html" method="POST" onsubmit="login();" style="text-align:center;">
+      <form action="login_ck" method="POST" onsubmit="login();" style="text-align:center;">
         <table class="j_table">
           <tr class="j_tr">
             <td class="j_td">ID</td>
-            <td class="j_td"><input type="text" class="join" id="id" placeholder="id" name="userID" maxlength="20"></td>
+            <td class="j_td"><input type="text" placeholder="id" name="CustomerID" maxlength="20"></td>
           </tr>
           <tr class="j_tr">
             <td class="j_td">PASSWORD</td>
-            <td class="j_td"><input type="password" class="join" id="pw" placeholder="password" name="userPassword" maxlength="20"></td>
+            <td class="j_td"><input type="password" placeholder="password" name="CustomerPW" maxlength="20"></td>
           </tr>
         </table>
         <br>
-        <button onclick="login()">login</button>
+        <button type="submit">login</button>
       </form>
     </div>
   </div>

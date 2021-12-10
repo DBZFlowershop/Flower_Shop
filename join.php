@@ -1,92 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$CustomerID=$_POST['CustomerID'];
+$CustomerPW=$_POST['CustomerPW'];
+$Email=$_POST['Email'];
+$CustomerName=$_POST['CustomerName'];
+$PhoneNumber=$_POST['PhoneNumber'];
+$CustomerAddress=$_POST['CustomerAddress'];
 
-<head>
-  <title>Join</title>
-  <link type="text/css" rel="stylesheet" href="mystyle.css">
-  <link type="text/css" rel="stylesheet" href="allStyle.css">
-  <script src="javas.js"></script>
-  <meta charset="utf-8">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<style media="screen">
-  body {
-    font-family: 'Montserrat', sans-serif;
-  }
+if($CustomerID==NULL||$CustomerPW==NULL||$Email==NULL||$CustomerName==NULL||$PhoneNumber==NULL||$CustomerAddress==NULL)
+{
+    echo "빈 칸을 모두 채워주세요";
+    echo "<a href=signUp.html>back page</a>";
+    exit();
+}
 
-  .jumbotron {
-    background-color: white;
-  }
+$mysql=mysqli_connect("localhost", "root", "123", "test")
 
-  .jumbotron span {
-    font-size: 35px;
-  }
+$check="SELECT *from Customer WHERE CustomerID='$CustomerID'"
+$result=$mysqli->query($check);
+if($result->num_rows==1)
+{
+    echo "중복된 id입니다.";
+    echo "<a href=join.html>back page</a>";
+    exit();
+}
 
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-  }
+$join=mysqli_query($mysql, "INSERT INTO user_info (userid, userpw, name, email)
+                            VALUES ('$CustomerID', '$CustomerPW', '$Email', '$CustomerName', '$PhoneNumber', '$CustomerAddress')";
+if($join){
+    echo "sign up success";
+}
 
-  .dropdown-menu {
-    border: 1px solid pink;
-  }
-
-  .dropdown-item {
-    color: grey;
-  }
-
-  .dropdown-item:hover {
-    color: pink;
-  }
-
-
-  #footer {
-    background-color: pink;
-    color: white;
-    letter-spacing: 2.5px;
-  }
-</style>
-
-<body>
-  <div class="col-lg-2"></div>
-  <div class="col-lg-8">
-    <div class="jumbotron" style="padding-top: 20px;">
-      <h3 style="text-align: center;">Sign-Up</h3><br>
-      <form style="text-align:center;" action="login.html" method="POST" onsubmit="join()">
-        <table class="j_table">
-          <tr class="j_tr">
-            <td class="j_td">ID</td>
-            <td class="j_td"><input type="text" class="join" id="id" placeholder="id" name="userID" maxlength="20"></td>
-          </tr>
-          <tr class="j_tr">
-            <td class="j_td">PASSWORD</td>
-            <td class="j_td"><input type="password" class="join" id="pw" placeholder="password" name="userPassword" maxlength="20"></td>
-          </tr>
-          <tr class="j_tr">
-            <td class="j_td">NAME</td>
-            <td class="j_td"><input type="text" class="join" id="name" placeholder="name" name="userName" maxlength="20"></td>
-          </tr>
-          <tr class="j_tr">
-            <td class="j_td">ADDRESS</td>
-            <td class="j_td"><input type="text" class="join" id="address" placeholder="address" name="userEmail" maxlength="50"></td>
-          </tr>
-          <tr class="j_tr">
-            <td class="j_td">PHONE NUMBER</td>
-            <td class="j_td"><input type="text" class="join" id="phonenum" placeholder="phone number" name="userEmail" maxlength="50"></td>
-          </tr>
-        </table>
-        <br>
-        <button id="button1" onclick="location.href = 'login.html'">join</button>
-      </form>
-    </div>
-  </div>
-  <div class="col-lg-2"></div>
-
-
-</body>
-
-</html>
+?>

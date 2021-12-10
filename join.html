@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Join</title>
+  <link type="text/css" rel="stylesheet" href="mystyle.css">
+  <link type="text/css" rel="stylesheet" href="allStyle.css">
+  <script src="javas.js"></script>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style media="screen">
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .jumbotron {
+    background-color: white;
+  }
+
+  .jumbotron span {
+    font-size: 35px;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
+
+  .dropdown-menu {
+    border: 1px solid pink;
+  }
+
+  .dropdown-item {
+    color: grey;
+  }
+
+  .dropdown-item:hover {
+    color: pink;
+  }
+
+
+  #footer {
+    background-color: pink;
+    color: white;
+    letter-spacing: 2.5px;
+  }
+</style>
+
+<body>
+  <div class="col-lg-2"></div>
+  <div class="col-lg-8">
+    <div class="jumbotron" style="padding-top: 20px;">
+      <h3 style="text-align: center;">Sign-Up</h3><br>
+      <form style="text-align:center;" action="join.php" method="POST" onsubmit="join()">
+        <table class="j_table">
+          <tr class="j_tr">
+            <td class="j_td">ID</td>
+            <td class="j_td"><input type="text" placeholder="id" name="CustomerID" maxlength="20"></td>
+          </tr>
+          <tr class="j_tr">
+            <td class="j_td">PASSWORD</td>
+            <td class="j_td"><input type="password" placeholder="password" name="CustomerPW" maxlength="20"></td>
+          </tr>
+          <tr class="j_tr">
+            <td class="j_td">NAME</td>
+            <td class="j_td"><input type="text" placeholder="name" name="CustomerName" maxlength="20"></td>
+          </tr>
+          <tr class="j_tr">
+            <td class="j_td">EMAIL</td>
+            <td class="j_td"><input type="text" placeholder="email" name="Email" maxlength="50"></td>
+          </tr>
+          <tr class="j_tr">
+            <td class="j_td">PHONE NUMBER</td>
+            <td class="j_td"><input type="text" placeholder="phone number" name="PhoneNumber" maxlength="50"></td>
+          </tr>
+          <tr class="j_tr">
+            <td class="j_td">ADDRESS</td>
+            <td class="j_td"><input type="text" placeholder="address" name="CustomerAddress" maxlength="50"></td>
+          </tr>
+        </table>
+        <br>
+        <button type="submit">join</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-lg-2"></div>
+</body>
+
+</html>

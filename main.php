@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+if(isset($_SESSION['CustomerID']))
+{
+  $user = 'href=logout.php>Logout';
+
+}
+else{
+  $user = 'href=login.html>Login';
+}
+?>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -128,24 +140,24 @@
       <!-- link -->
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link" href="location.html" id="nav_location">Location</a>
+          <a class="nav-link" href="location.php" id="nav_location">Location</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="list.html">Flower</a>
+          <a class="nav-link" href="list.php">Flower</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">Recommend</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="situation.html">Contextual</a>
-            <a class="dropdown-item" href="spring.html">Seasonal</a>
-            <a class="dropdown-item" href="pday.html">Pday</a>
+            <a class="dropdown-item" href="situation.php">Contextual</a>
+            <a class="dropdown-item" href="spring.php">Seasonal</a>
+            <a class="dropdown-item" href="pday.php">Pday</a>
           </div>
         </li>
       </ul>
 
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
-        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+        <li class="nav-item"><a class="nav-link" <?php echo $user;?></a></li>
+        <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
       </ul>
     </div>
   </nav>

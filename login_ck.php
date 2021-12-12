@@ -1,13 +1,16 @@
 <?php
 session_start();
+include_once 'dbconfig.php';
 $CustomerID=$_POST['CustomerID'];
 $CustomerPW=$_POST['CustomerPW'];
 
-$mysql=mysqli_connect("localhost", "root", "123", "test")
+$dbname = "flowershop";
+mysqli_select_db($conn, $dbname) or die('DB selection failed');
 
-$check="SELECT *from Customer WHERE CustomerID='$CustomerID'"
-$result=$mysqli->query($check);
-if(result->num_rows==1){
+$check="SELECT *from customer WHERE CustomerID='$CustomerID'";
+$result=$conn->query($check);
+
+if($result->num_rows==1){
     $row=$result->fetch_array(MYSQLI_ASSOC);
     if($row['CustomerPW']==$CustomerPW){
         $_SESSION['CustomerID']=$CustomerID;

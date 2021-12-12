@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+if(isset($_SESSION['CustomerID']))
+{
+  $user = 'href=logout.php>Logout';
+
+}
+else{
+  $user = 'href=login.html>Login';
+}
+?>
+
 <head>
 	<title>Fall</title>
 	<link type="text/css" rel="stylesheet" href="mystyle.css">
@@ -71,7 +83,7 @@ function footerMouseIn() {
   <!-- ************ header **********   -->
   <!-- brand -->
   <nav class="navbar navbar-expand-sm" id="nav">
-    <a class="navbar-brand mr-auto" href="main.html">Home</a>
+    <a class="navbar-brand mr-auto" href="main.php">Home</a>
 
     <!-- collapse button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,131 +94,85 @@ function footerMouseIn() {
       <!-- link -->
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link" href="location.html" id="nav_location">Location</a>
+          <a class="nav-link" href="location.php" id="nav_location">Location</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="list.html">Flower</a>
+          <a class="nav-link" href="list.php">Flower</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle active" href="" data-toggle="dropdown">Recommend</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="situation.html">Contextual</a>
-            <a class="dropdown-item" href="spring.html">Seasonal</a>
-            <a class="dropdown-item" href="pday.html">Pday</a>
+            <a class="dropdown-item" href="situation.php">Contextual</a>
+            <a class="dropdown-item" href="spring.php">Seasonal</a>
+            <a class="dropdown-item" href="pday.php">Pday</a>
           </div>
         </li>
       </ul>
 
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
-        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+      <li class="nav-item"><a class="nav-link" <?php echo $user;?></a></li>
+        <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
       </ul>
     </div>
   </nav>
-		  </nav>
+	</nav>
 		
 </div>
 <!-- ************ header **********   -->
-<div class="row">
+<div style="text-align: center;">
+			<ul class="j_ul">
+				<li><a href="spring.php">Spring</a></li>
+				<li><a href="summer.php">Summer</a></li>
+				<li><a href="fall.php" style="font-size:20px; font-weight: bold;">Fall</a></li>
+				<li><a href="winter.php">Winter</a></li>
+			</ul>
+		</div>
+  </div>
+	</div>
+
+	<div class="row" style="padding-top:30px; padding-bottom:30px;">
 	<div class="col-sm-1">
 	</div>
 	<div class="col-sm-10">
-		<div style="text-align: center;">
-			<ul class="j_ul">
-				<li><a href="spring.html">Spring</a></li>
-				<li><a href="summer.html">Summer</a></li>
-				<li><a href="fall.html" style="font-size:20px; font-weight: bold;">Fall</a></li>
-				<li><a href="winter.html">Winter</a></li>
-			</ul>
-			<hr>
-		</div>
-
 		<div class="container-fluid bg-3 text-left">
 		<div class="row">
-			<div class="col-sm-4">
-				<div class="seaitem" onclick="detail(25)">
-					<img class="seaflowerimg" src="fall1.jpg" alt="spring">
-					<p class="situation">sunflower</p>
-					<p class="price">30 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(26)">
-					<img class="seaflowerimg" src="fall2.jpg" alt="summer">
-					<p class="situation">Chrysanthemum</p>
-					<p class="price">35 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(27)">
-					<img class="seaflowerimg" src="fall3.jpg" alt="fall">
-					<p class="situation">White Chrysanthemum</p>
-					<p class="price">20 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(28)">
-					<img class="seaflowerimg" src="fall4.jpg" alt="winter">
-					<p class="situation">Purple globe amaranth</p>
-					<p class="price">25 $</p>
-				</div>
-			</div>
+  <?php
+  include_once 'dbconfig.php';
 
-			<div class="col-sm-4">
-				<div class="seaitem" onclick="detail(29)">
-					<img class="seaflowerimg" src="fall5.jpg" alt="fall">
-					<p class="situation">Red globe amaranth</p>
-					<p class="price">30 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(30)">
-					<img class="seaflowerimg" src="fall6.jpg" alt="fall">
-					<p class="situation">Pink Patrinia scabiosaefolia</p>
-					<p class="price">20 $</p>
-				</div> 
-				<hr>
-				<div class="seaitem" onclick="detail(31)">
-					<img class="seaflowerimg" src="fall7.jpg" alt="fall">
-					<p class="situation">Purple Patrinia scabiosaefolia</p>
-					<p class="price">20 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(32)">
-					<img class="seaflowerimg" src="fall8.jpg" alt="spring">
-					<p class="situation">Yellow Patrinia scabiosaefolia</p>
-					<p class="price">25 $</p>
-				</div>
-			</div>
+  $dbname = "flowershop";
+  mysqli_select_db($conn, $dbname) or die('DB selection failed');
+  
+  $sql = "SELECT * FROM flower WHERE Category='Fall'; ";
+  $result = $conn->query($sql);
 
-			<div class="col-sm-4">
-				<div class="seaitem" onclick="detail(33)">
-					<img class="seaflowerimg" src="fall9.jpg" alt="fall">
-					<p class="situation">Pink dahlia</p>
-					<p class="price">20 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(34)">
-					<img class="seaflowerimg" src="fall10.jpg" alt="spring">
-					<p class="situation">burgundy dahlia</p>
-					<p class="price">25 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(35)">
-					<img class="seaflowerimg" src="fall11.jpeg" alt="summer">
-					<p class="situation">Orange dahlia</p>
-					<p class="price">20 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(36)">
-					<img class="seaflowerimg" src="fall12.jpg" alt="fall">
-					<p class="situation">Cosmos</p>
-					<p class="price">30 $</p>
-				</div>
-			</div>
-			</div>
+  if($result->num_rows > 0){
+    while($row = $result->fetch_assoc()){
+      if($row["FlowerID"]==29||$row["FlowerID"]==33||$row["FlowerID"]==37){
+        echo "<div class=\"col-sm-4\">";
+      }
+      echo "<div class=\"seaitem\" onclick=\"location.href='detail1.php?id=".$row["FlowerID"]."'\">
+      <img class=\"seaflowerimg\" src=\"".$row["FlowerImg"]."\" alt=\"spring\">
+      <p class=\"situation\">".$row["FlowerName"]."</p>
+      <p class=\"price\">".$row["FlowerPrice"]." $</p>
+      </div>
+      <hr>";
+      if($row["FlowerID"]==32||$row["FlowerID"]==36||$row["FlowerID"]==40){
+        echo "</div>";
+      }
+    }
+  }else{
+    echo "0 results";
+  }
+  ?>
+  </div>
 		</div>
 	</div>
 
 	<div class="col-sm-1">
 	</div>
 </div>
+
+
 <div class="container-fluid" id="footer" onmouseover="footerMouseIn()" onmouseout="footerMouseOut()">
     <div class="row">
       <div class="col-sm-6" style="font-size:50px; font-weight:600" id="team_name">

@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+if(isset($_SESSION['CustomerID']))
+{
+  $user = 'href=logout.php>Logout';
+
+}
+else{
+  $user = 'href=login.html>Login';
+}
+?>
+
+
 <head>
 	<title>Summer</title>
 	<link type="text/css" rel="stylesheet" href="mystyle.css">
@@ -70,7 +83,7 @@
 	<div class="menubar">
 		<!-- brand -->
 		<nav class="navbar navbar-expand-sm" id="nav">
-			<a class="navbar-brand mr-auto" href="main.html">Home</a>
+			<a class="navbar-brand mr-auto" href="main.php">Home</a>
 
 			<!-- collapse button -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,35 +94,34 @@
 				<!-- link -->
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="location.html" id="nav_location">Location</a>
+						<a class="nav-link" href="location.php" id="nav_location">Location</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="list.html">Flower</a>
+						<a class="nav-link" href="list.php">Flower</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle active" href="" data-toggle="dropdown">Recommend</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="situation.html">Contextual</a>
-							<a class="dropdown-item" href="spring.html">Seasonal</a>
-							<a class="dropdown-item" href="pday.html">Pday</a>
+							<a class="dropdown-item" href="situation.php">Contextual</a>
+							<a class="dropdown-item" href="spring.php">Seasonal</a>
+							<a class="dropdown-item" href="pday.php">Pday</a>
 						</div>
 					</li>
 				</ul>
 
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
-					<li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+					<li class="nav-item"><a class="nav-link" href="login.php">Logout</a></li>
+					<li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
 				</ul>
 			</div>
 		</nav>
 		<div style="text-align: center;">
 			<ul class="j_ul">
-				<li><a href="spring.html">Spring</a></li>
-				<li><a href="summer.html" style="font-size:20px; font-weight: bold;">Summer</a></li>
-				<li><a href="fall.html">Fall</a></li>
-				<li><a href="winter.html">Winter</a></li>
+				<li><a href="spring.php">Spring</a></li>
+				<li><a href="summer.php" style="font-size:20px; font-weight: bold;">Summer</a></li>
+				<li><a href="fall.php">Fall</a></li>
+				<li><a href="winter.php">Winter</a></li>
 			</ul>
-
 		</div>
 	</div>
 	</div>
@@ -118,90 +130,37 @@
 	<div class="col-sm-1">
 	</div>
 	<div class="col-sm-10">
-
-
-
-
 		<div class="container-fluid bg-3 text-left">
 		<div class="row">
-			<div class="col-sm-4">
-				<div class="seaitem" onclick="detail(13)">
-					<img class="seaflowerimg" src="summer1.jpg" alt="spring">
-					<p class="situation">Purple hydrangea</p>
-					<p class="price">25 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(14)">
-					<img class="seaflowerimg" src="summer2.jpeg" alt="summer">
-					<p class="situation">Yellow rose</p>
-					<p class="price">35 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(15)">
-					<img class="seaflowerimg" src="summer3.jpeg" alt="fall">
-					<p class="situation">Blue rose</p>
-					<p class="price">20 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(16)">
-					<img class="seaflowerimg" src="summer4.jpeg" alt="winter">
-					<p class="situation">Lavenderace rose</p>
-					<p class="price">25 $</p>
-				</div>
-			</div>
+		<?php
+		include_once 'dbconfig.php';
 
-			<div class="col-sm-4">
-				<div class="seaitem" onclick="detail(17)">
-					<img class="seaflowerimg" src="summer5.jpeg" alt="fall">
-					<p class="situation">delphinium</p>
-					<p class="price">30 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(18)">
-					<img class="seaflowerimg" src="summer6.jpeg" alt="fall">
-					<p class="situation">Blue hydrangea</p>
-					<p class="price">20 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(19)">
-					<img class="seaflowerimg" src="summer7.jpeg" alt="fall">
-					<p class="situation">Calla</p>
-					<p class="price">20 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(20)">
-					<img class="seaflowerimg" src="summer8.jpeg" alt="spring">
-					<p class="situation">Pink hydrange</p>
-					<p class="price">25 $</p>
-				</div>
-			</div>
+		$dbname = "flowershop";
+		mysqli_select_db($conn, $dbname) or die('DB selection failed');
+		
+		$sql = "SELECT * FROM flower WHERE Category='Summer'; ";
+		$result = $conn->query($sql);
 
-			<div class="col-sm-4">
-				<div class="seaitem" onclick="detail(21)">
-					<img class="seaflowerimg" src="summer9.jpeg" alt="fall">
-					<p class="situation">Yellow, Pink rose</p>
-					<p class="price">20 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(22)">
-					<img class="seaflowerimg" src="summer10.jpeg" alt="spring">
-					<p class="situation">Mixed flower</p>
-					<p class="price">25 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(23)">
-					<img class="seaflowerimg" src="summer11.jpeg" alt="summer">
-					<p class="situation">Mini rose</p>
-					<p class="price">20 $</p>
-				</div>
-				<hr>
-				<div class="seaitem" onclick="detail(24)">
-					<img class="seaflowerimg" src="summer12.jpeg" alt="fall">
-					<p class="situation">Green hydrange</p>
-					<p class="price">30 $</p>
-				</div>
+		if($result->num_rows > 0){
+			while($row = $result->fetch_assoc()){
+			if($row["FlowerID"]==17||$row["FlowerID"]==21||$row["FlowerID"]==25){
+				echo "<div class=\"col-sm-4\">";
+			}
+			echo "<div class=\"seaitem\" onclick=\"location.href='detail1.php?id=".$row["FlowerID"]."'\">
+			<img class=\"seaflowerimg\" src=\"".$row["FlowerImg"]."\" alt=\"summer\">
+			<p class=\"situation\">".$row["FlowerName"]."</p>
+			<p class=\"price\">".$row["FlowerPrice"]." $</p>
 			</div>
-			</div>
+			<hr>";
+			if($row["FlowerID"]==20||$row["FlowerID"]==24||$row["FlowerID"]==28){
+				echo "</div>";
+			}
+			}
+		}else{
+			echo "0 results";
+		}
+		?>
+		</div>
 		</div>
 	</div>
 

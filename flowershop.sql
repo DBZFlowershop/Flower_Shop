@@ -193,9 +193,10 @@ CREATE TABLE FOrder(
 );
 
 CREATE TABLE OrderDetail(
+    OrderDetailID int auto_increment NOT NULL, 
     OrderID INT,
     FlowerID INT not null,
     Quantity INT not null,
     
-    primary key(OrderID)
+    primary key(OrderDetailID)
 );

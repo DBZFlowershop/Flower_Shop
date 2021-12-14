@@ -240,15 +240,26 @@ else{
         var sum = 0;
         var selected_flowers = "";
         var checkbox = document.getElementsByClassName('check');
+        var itemlist="?item=";
+        var itemcount=0;
         for (var i = 0; i < checkbox.length; i++) {
             var count = document.getElementById("count" + i).innerHTML;
             if (checkbox[i].checked == true && count > 0) {
+              var itemid=i+1;
+              itemcount++;
               sum += count * parseInt(document.getElementById("product_price"+i).innerHTML);
-              selected_flowers += count + " " + document.getElementById("product_name"+i).innerHTML + ", "
+              selected_flowers += count + " " + document.getElementById("product_name"+i).innerHTML + ", ";
+              if(itemlist=="?item="){
+                itemlist = itemlist+itemid;
+              }
+              else{
+                itemlist = itemlist+","+itemid;
+              }
             }
         }
         if (sum > 0) {
             alert("You selected \n\n" + selected_flowers + "\n----------------\n" + sum + "$");
+            location.href='cart_buy.php'+itemlist+'&itemcount='+itemcount;
         } else {
             alert("You selected nothing!");
         }
@@ -259,7 +270,7 @@ else{
       <div class="col-sm-9" style="padding-left: 30px;">Thank you for visiting our web site :)</div>
       <button type="button" class="btn btn-light" onclick="" id="purchase_button">Delete</button>
       <div class="col-sm-1">
-      <a href="buy.php"><button type="button" class="btn btn-light" onclick="Cart_purchase()" id="purchase_button">Purchase</button></a>
+      <button type="button" class="btn btn-light" onclick="Cart_purchase()" id="purchase_button">Purchase</button></a>
       </div>
     </div>
   </div>

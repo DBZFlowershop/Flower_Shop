@@ -32,78 +32,152 @@ $conn = new mysqli($servername, $username, $password);
     if ($FlowerType == 'Rose') {
       if ($Size == 'Small') {
         $FlowerID=49;
+        $FlowerName='Custom1';
+        $FlowerImg = 'pros.png';
       } else if ($Size == 'Medium') {
         $FlowerID=50;
+        $FlowerName='Custom2';
+        $FlowerImg = 'prom.png';
       } else if ($Size == 'Large') {
         $FlowerID=51;
+        $FlowerName='Custom3';
+        $FlowerImg = 'prol.png';
       }
     } else if ($FlowerType == 'Tulip') {
       if ($Size == 'Small') {
         $FlowerID=52;
+        $FlowerName='Custom4';
+        $FlowerImg = 'pts.png';
       } else if ($Size == 'Medium') {
         $FlowerID=53;
+        $FlowerName='Custom5';
+        $FlowerImg = 'ptm.png';
       } else if ($Size == 'Large') {
         $FlowerID=54;
+        $FlowerName='Custom6';
+        $FlowerImg = 'ptl.png';
       }
     } else if ($FlowerType == 'Ranunculus') {
       if ($Size == 'Small') {
         $FlowerID=55;
+        $FlowerName='Custom7';
+        $FlowerImg = 'pras.png';
       } else if ($Size == 'Medium') {
         $FlowerID=56;
+        $FlowerName='Custom8';
+        $FlowerImg = 'pram.png';
+
       } else if ($Size == 'Large') {
         $FlowerID=57;
+        $FlowerName='Custom9';
+        $FlowerImg = 'pral.png';
+
       }
     }
   } else if ($WrapColor == 'White') {
     if ($FlowerType == 'Rose') {
       if ($Size == 'Small') {
         $FlowerID=58;
+        $FlowerName='Custom10';
+        $FlowerImg = 'wros.png';
+
       } else if ($Size == 'Medium') {
         $FlowerID=59;
+        $FlowerName='Custom11';
+        $FlowerImg = 'wrom.png';
+
       } else if ($Size == 'Large') {
         $FlowerID=60;
+        $FlowerName='Custom12';
+        $FlowerImg = 'wrol.png';
+
       }
     } else if ($FlowerType == 'Tulip') {
       if ($Size == 'Small') {
         $FlowerID=61;
+        $FlowerName='Custom13';
+        $FlowerImg = 'wts.png';
+
       } else if ($Size == 'Medium') {
         $FlowerID=62;
+        $FlowerName='Custom14';
+        $FlowerImg = 'wtm.png';
+
       } else if ($Size == 'Large') {
         $FlowerID=63;
+        $FlowerName='Custom15';
+        $FlowerImg = 'wtl.png';
+
       }
     } else if ($FlowerType == 'Ranunculus') {
       if ($Size == 'Small') {
         $FlowerID=64;
+        $FlowerName='Custom16';
+        $FlowerImg = 'wras.png';
+
       } else if ($Size == 'Medium') {
         $FlowerID=65;
+        $FlowerName='Custom17';
+        $FlowerImg = 'wram.png';
+
       } else if ($Size == 'Large') {
         $FlowerID=66;
+        $FlowerName='Custom18';
+        $FlowerImg = 'wral.png';
+
       }
     }
   } else if ($WrapColor == 'Gray') {
     if ($FlowerType == 'Rose') {
       if ($Size == 'Small') {
         $FlowerID=67;
+        $FlowerName='Custom19';
+        $FlowerImg = 'gros.png';
+
       } else if ($Size == 'Medium') {
         $FlowerID=68;
+        $FlowerName='Custom20';
+        $FlowerImg = 'grom.png';
+
       } else if ($Size == 'Large') {
         $FlowerID=69;
+        $FlowerName='Custom21';
+        $FlowerImg = 'grol.png';
+
       }
     } else if ($FlowerType == 'Tulip') {
       if ($Size == 'Small') {
         $FlowerID=70;
+        $FlowerName='Custom22';
+        $FlowerImg = 'gts.png';
+
       } else if ($Size == 'Medium') {
         $FlowerID=71;
+        $FlowerName='Custom23';
+        $FlowerImg = 'gtm.png';
+
       } else if ($Size == 'Large') {
         $FlowerID=72;
+        $FlowerName='Custom24';
+        $FlowerImg = 'gtl.png';
+
       }
     } else if ($FlowerType == 'Ranunculus') {
       if ($Size == 'Small') {
         $FlowerID=73;
+        $FlowerName='Custom25';
+        $FlowerImg = 'gras.png';
+
       } else if ($Size == 'Medium') {
         $FlowerID=74;
+        $FlowerName='Custom26';
+        $FlowerImg = 'gram.png';
+
       } else if ($Size == 'Large') {
         $FlowerID=75;
+        $FlowerName='Custom27';
+        $FlowerImg = 'gral.png';
+
       }
     }
   }
@@ -114,20 +188,7 @@ $conn = new mysqli($servername, $username, $password);
   }else if($Size == 'Large'){
     $price=70;
   }
-  echo $FlowerID;
-  echo $price;
-
-  $sql = "SELECT * FROM flower WHERE FlowerID=$FlowerID";
-  $res = $conn->query($sql);
   
-  if ($res !== false && $res->num_rows > 0){
-    while($row = $num_result->fetch_assoc()){
-      $name=$res["FlowerName"];
-      echo $name;
-      $img=$res["FlowerImg"];
-      $price=$res["FlowerPrice"];
-      }
-  }
   ?>
 <head>
   <meta charset="utf-8">

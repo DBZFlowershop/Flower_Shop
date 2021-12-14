@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
+
+<?php 
+session_start();
+include_once 'dbconfig.php';
+
+// Select a database
+$dbname = "FlowerShop";
+mysqli_select_db($conn, $dbname) or die('DB selection failed');
+
+//아이디 가져오기
+if(isset($_SESSION['CustomerID']))
+{
+  $CustomerID = $_SESSION['CustomerID'];
+  $user = 'href=logout.php>Logout';
+}
+else{
+  $user = 'href=login.php>Login';
+}
+?>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +45,8 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
+
+
   <title>Cart</title>
   <script src="flowers.js"></script>
   <style media="screen">
@@ -105,10 +127,10 @@
   </style>
 </head>
 
-<body onload="cart()">
+<body>
   <!-- brand -->
   <nav class="navbar navbar-expand-sm" id="nav">
-    <a class="navbar-brand mr-auto" href="main.html">Home</a>
+    <a class="navbar-brand mr-auto" href="main.php">Home</a>
 
     <!-- collapse button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar"
@@ -120,28 +142,29 @@
       <!-- link -->
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link" href="location.html" id="nav_location">Location</a>
+          <a class="nav-link" href="location.php" id="nav_location">Location</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="list.html">Flower</a>
+          <a class="nav-link" href="list.php">Flower</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">Recommend</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="situation.html">Contextual</a>
-            <a class="dropdown-item" href="spring.html">Seasonal</a>
-            <a class="dropdown-item" href="pday.html">Pday</a>
+            <a class="dropdown-item" href="situation.php">Contextual</a>
+            <a class="dropdown-item" href="spring.php">Seasonal</a>
+            <a class="dropdown-item" href="pday.php">Pday</a>
           </div>
         </li>
       </ul>
 
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
-        <li class="nav-item"><a class="nav-link active" href="cart.html">Cart</a></li>
+        <li class="nav-item"><a class="nav-link" <?php echo $user;?></a></li>
+        <li class="nav-item"><a class="nav-link active" href="cart.php">Cart</a></li>
       </ul>
     </div>
   </nav>
 
+  <!--contents -->
   <div class="container shadow-lg p-3 mb-5 bg-white rounded" id="flowers_box">
     <span id="cartlist">Cart List <img src="shopping-cart-empty-side-view.png" alt="cart image" id="cart_image"></span>
     <table class="table" id="flower_table">
@@ -155,19 +178,98 @@
         </tr>
       </thead>
       <tbody id="flower_body">
+        <?php
+          //유저ID를 갖고있는 attribute개수
+          $from_user_sql = "SELECT * FROM Cart WHERE CustomerID='$CustomerID';"; 
+
+          //쿼리 연결하기
+          if($num_result=$conn->query($from_user_sql)){
+            $num_result=$conn->query($from_user_sql); //쿼리문 연결후 결과 받기
+          }else{
+             echo "Error: " . $from_user_sql . " " . $conn->error;
+          }
+
+          $i = 0; //for문땜에 넣음
+          
+          //목록 만들기 시작
+          if(!empty($num_result->num_rows) && $num_result->num_rows > 0){
+            while($row = $num_result->fetch_assoc()){ //한줄씩
+
+              /*꽃 ID, ID로 참조할 이미지, 이름, 가격 변수 설정 */
+              //이름, 가격, 이미지 빼오기
+              $FlowerID = $row["FlowerID"];
+              $flowerInfo_sql = "SELECT FlowerName, FlowerPrice, FlowerImg FROM Flower WHERE FlowerID=$FlowerID";
+
+              //쿼리 연결하기
+              if($conn->query($flowerInfo_sql)){
+                $flowerInfo_result=$conn->query($flowerInfo_sql); //쿼리문 연결후 결과 받기
+              }else{
+                echo "Error: " . $flowerInfo_sql . "<br>" . $conn->error;
+              }
+
+              if(!empty($flowerInfo_result->num_rows) && $flowerInfo_result->num_rows > 0){
+                while($row2 = $flowerInfo_result->fetch_assoc()){ //한줄씩
+                  $image = $row2["FlowerImg"];
+                  $name = $row2["FlowerName"];
+                  $price = $row2["FlowerPrice"];
+                  $quantity = $row["Quantity"];
+                  //테이블만들기
+                  echo "<tr>"; //start of tr
+                  echo "<td><input type='checkbox' class='check'></td>"; //checkbox
+                  echo "<td><img src='".$image."' alt='flower image' style='width:13em'></td>"; //image td
+                  echo "<td id='product_name".$i."'>".$name."</td>";//name td
+                  echo "<td id='product_price".$i."'>".$price."$</td>";//price td
+                  //quantity td
+                  echo '<td><form> <input class="btn1" type = button value = "-" onclick = "minus(' . $i . ')">
+                  <input class="btn1" type=text name=amount value='. $quantity .' id = "count' . $i . '" >
+                  <input class="btn1" type=button value="+" onclick="plus(' . $i . ')">
+                  </form></td>"';
+
+                  echo "</tr>"; //end of tr
+                  $i++;
+                }
+              }
+            }
+          }
+          else{
+            echo "<tr><td>0 result</td></tr>";
+          }
+        ?>
       </tbody>
     </table>
+
+    <script>
+            function Cart_purchase() {
+            var sum = 0;
+            var selected_flowers = "";
+            var checkbox = document.getElementsByClassName('check');
+            for (var i = 0; i < checkbox.length; i++) {
+                var count = document.getElementById("count" + i).value;
+                if (checkbox[i].checked == true && count > 0) {
+                sum += count * parseInt(document.getElementById("product_price"+i).value);
+                selected_flowers += count + " " + document.getElementById("product_name"+i).value + ", "
+                }
+            }
+            if (sum > 0) {
+                alert("You selected \n\n" + selected_flowers + "\n----------------\n" + sum + "$");
+            } else {
+                alert("You selected nothing!");
+            }
+        }
+        </script>
+
 
     <hr>
     <div class="row">
       <div class="col-sm-10" style="padding-left: 30px;">Thank you for visiting our web site :)</div>
       <div class="col-sm-2">
-        <a href="buy.html"><button type="button" class="btn btn-light" onclick="cart_purchase()" id="purchase_button">Purchase</button></a>
+        <a href="buy.php"><button type="button" class="btn btn-light" onclick="Cart_purchase()" id="purchase_button">Purchase</button></a>
       </div>
     </div>
   </div>
 
 
+  <!--옆에 박스-->
   <div class="card text-center" style="width: 8rem;">
     <ul class="list-group list-group-flush">
       <a href="#nav"><li class="list-group-item">TOP</li></a>

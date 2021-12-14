@@ -73,6 +73,11 @@ $price=$row["FlowerPrice"];
       location.href='cart_add.php?cid=<?php echo $customer; ?>&fid=<?php echo $id;?>&quantity='+count;
     }
 
+    function buy(){
+      var count = Number(document.getElementById("count").value);  
+      location.href='flower_buy.php?id=<?php echo $id;?>&quantity='+count;
+    }
+
     function footerMouseIn() {
       document.getElementById('team_name').innerText = "WebBarZo"
     }

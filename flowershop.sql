@@ -36,7 +36,7 @@ INSERT INTO Flower(FlowerID, FLowerName, FlowerPrice, Category, FlowerImg)
 VALUES
     (001, 'Camomile', 25, 'situation', 'contex1.jpg'),
     (002, 'Papiopedilloom', 35, 'situation', 'contex2.jpg'),
-    (003, 'Gongjakcho', 20, 'situation', 'contex3.jpg'),
+    (003, 'Gongjakcho', 20, 'situation', 'contex3.png'),
     (004, 'freesia', 25, 'situation', 'contex4.jpg'),
     (005, 'Carnation', 30, 'situation', 'contex5.jpg'),
     (006, 'Pink hydrange', 20, 'situation', 'contex6.jpeg'),
@@ -112,7 +112,7 @@ CREATE TABLE FlowerExplanation(
 );
 
 INSERT INTO FlowerExplanation VALUES
-    (001, 'When visiting a person in a difficult situation or'),
+    (001, 'When visiting a person in a difficult situation or a hospital'),
     (002, 'When encouraging the future of good people'),
     (003, 'When you want to make peace'),
     (004, 'When cheering for a new beginning'),

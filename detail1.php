@@ -6,11 +6,28 @@ session_start();
 if(isset($_SESSION['CustomerID']))
 {
   $user = 'href=logout.php>Logout';
-
 }
 else{
   $user = 'href=login.php>Login';
 }
+
+$id = $_GET["id"];
+include_once 'dbconfig.php';
+
+$dbname = "flowershop";
+mysqli_select_db($conn, $dbname) or die('DB selection failed');
+
+$sql = "SELECT * FROM flower WHERE FlowerID=$id; ";
+$result = $conn->query($sql);
+
+$result->num_rows;
+$row = $result->fetch_assoc();
+
+$customer=$_SESSION['CustomerID'];
+
+$name=$row["FlowerName"];
+$img=$row["FlowerImg"];
+$price=$row["FlowerPrice"];
 ?>
 
 
@@ -51,6 +68,11 @@ else{
       document.getElementById("total").textContent = total;
     }
 
+    function cart(){
+      var count = Number(document.getElementById("count").value);  
+      location.href='cart_add.php?cid=<?php echo $customer; ?>&fid=<?php echo $id;?>&quantity='+count;
+    }
+
     function footerMouseIn() {
       document.getElementById('team_name').innerText = "WebBarZo"
     }
@@ -58,6 +80,7 @@ else{
     function footerMouseOut() {
       document.getElementById('team_name').innerText = "WBZ"
     }
+
   </script>
 
   <style>
@@ -139,21 +162,7 @@ else{
   </nav>
 
 <?php
-$id = $_GET["id"];
-include_once 'dbconfig.php';
 
-$dbname = "flowershop";
-mysqli_select_db($conn, $dbname) or die('DB selection failed');
-
-$sql = "SELECT * FROM flower WHERE FlowerID=$id; ";
-$result = $conn->query($sql);
-
-$result->num_rows;
-$row = $result->fetch_assoc();
-
-$name=$row["FlowerName"];
-$img=$row["FlowerImg"];
-$price=$row["FlowerPrice"];
 ?>
 
 <div class="row" style="padding-top:30px; padding-bottom:30px;">
@@ -187,17 +196,11 @@ $price=$row["FlowerPrice"];
         <span>$</span><br><br>
         <br><br>
         <button class="btn1" onclick="buy()">Buy</button>
-        <a href="cart.html"><button class="btn1">Cart</button></a>
+        <button class="btn1" onclick="cart()">Cart</button></a>
 
       </div>
     </div>
 	</div>
-
-  <?php
-  
-  
-  
-  ?>
 
   </div>
   <div class="col-sm-1">

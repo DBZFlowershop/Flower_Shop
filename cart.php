@@ -211,8 +211,8 @@ else{
                 while($row2 = $flowerInfo_result->fetch_assoc()){ //한줄씩
                   $image = $row2["FlowerImg"];
                   $name = $row2["FlowerName"];
-                  $price = $row2["FlowerPrice"];
                   $quantity = $row["Quantity"];
+                  $price = $row2["FlowerPrice"]*$quantity;
                   //테이블만들기
                   echo "<tr>"; //start of tr
                   echo "<td><input type='checkbox' class='check'></td>"; //checkbox
@@ -220,10 +220,7 @@ else{
                   echo "<td id='product_name".$i."'>".$name."</td>";//name td
                   echo "<td id='product_price".$i."'>".$price."$</td>";//price td
                   //quantity td
-                  echo '<td><form> <input class="btn1" type = button value = "-" onclick = "minus(' . $i . ')">
-                  <input class="btn1" type=text name=amount value='. $quantity .' id = "count' . $i . '" >
-                  <input class="btn1" type=button value="+" onclick="plus(' . $i . ')">
-                  </form></td>"';
+                  echo '<td id="count'.$i.'">'.$quantity.'</td>"';
 
                   echo "</tr>"; //end of tr
                   $i++;
@@ -239,31 +236,30 @@ else{
     </table>
 
     <script>
-            function Cart_purchase() {
-            var sum = 0;
-            var selected_flowers = "";
-            var checkbox = document.getElementsByClassName('check');
-            for (var i = 0; i < checkbox.length; i++) {
-                var count = document.getElementById("count" + i).value;
-                if (checkbox[i].checked == true && count > 0) {
-                sum += count * parseInt(document.getElementById("product_price"+i).value);
-                selected_flowers += count + " " + document.getElementById("product_name"+i).value + ", "
-                }
-            }
-            if (sum > 0) {
-                alert("You selected \n\n" + selected_flowers + "\n----------------\n" + sum + "$");
-            } else {
-                alert("You selected nothing!");
+      function Cart_purchase() {
+        var sum = 0;
+        var selected_flowers = "";
+        var checkbox = document.getElementsByClassName('check');
+        for (var i = 0; i < checkbox.length; i++) {
+            var count = document.getElementById("count" + i).innerHTML;
+            if (checkbox[i].checked == true && count > 0) {
+              sum += count * parseInt(document.getElementById("product_price"+i).innerHTML);
+              selected_flowers += count + " " + document.getElementById("product_name"+i).innerHTML + ", "
             }
         }
-        </script>
-
-
+        if (sum > 0) {
+            alert("You selected \n\n" + selected_flowers + "\n----------------\n" + sum + "$");
+        } else {
+            alert("You selected nothing!");
+        }
+      }
+    </script>
     <hr>
     <div class="row">
-      <div class="col-sm-10" style="padding-left: 30px;">Thank you for visiting our web site :)</div>
-      <div class="col-sm-2">
-        <a href="buy.php"><button type="button" class="btn btn-light" onclick="Cart_purchase()" id="purchase_button">Purchase</button></a>
+      <div class="col-sm-9" style="padding-left: 30px;">Thank you for visiting our web site :)</div>
+      <button type="button" class="btn btn-light" onclick="" id="purchase_button">Delete</button>
+      <div class="col-sm-1">
+      <a href="buy.php"><button type="button" class="btn btn-light" onclick="Cart_purchase()" id="purchase_button">Purchase</button></a>
       </div>
     </div>
   </div>

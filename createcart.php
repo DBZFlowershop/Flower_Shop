@@ -121,7 +121,7 @@ mysqli_select_db($conn, $dbname) or die('DB selection failed');
   $CustomerID = $_SESSION['CustomerID'];
   $Quantity = 1;
 
-  $query = "insert into Cart ()
+  $query = "insert into Cart (CustomerID, FlowerID, Quantity)
       values ('$CustomerID', '$FlowerID', '$Quantity')";
 
 

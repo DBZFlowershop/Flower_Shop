@@ -10,6 +10,12 @@ mysqli_select_db($conn, $dbname) or die('DB selection failed');
 $check="SELECT *from customer WHERE CustomerID='$CustomerID'";
 $result=$conn->query($check);
 
+if($CustomerID==NULL||$CustomerPW==NULL)
+{
+    echo("<script>alert(\"Fill in all the blanks!\"); location.href='login.php';</script>");
+    exit();
+}
+
 if($result->num_rows==1){
     $row=$result->fetch_array(MYSQLI_ASSOC);
     if($row['CustomerPW']==$CustomerPW){
@@ -18,14 +24,14 @@ if($result->num_rows==1){
             header('Location: main.php');
         }
         else{
-            echo "세션 저장 실패";
+            echo("<script>alert(\"The ID or password is not correct!\"); location.href='login.php';</script>");
         }
     }
     else{
-        echo "아이디 또는 패스워드가 틀렸습니다.";
+        echo("<script>alert(\"The ID or password is not correct!\"); location.href='login.php';</script>");
     }
 }
 else{
-    echo "아이디 또는 패스워드가 틀렸습니다.";
+    echo("<script>alert(\"The ID or password is not correct!\"); location.href='login.php';</script>");
 }
 ?>

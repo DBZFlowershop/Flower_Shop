@@ -12,8 +12,7 @@ mysqli_select_db($conn, $dbname) or die('DB selection failed');
 
 if($CustomerID==NULL||$CustomerPW==NULL||$Email==NULL||$CustomerName==NULL||$PhoneNumber==NULL||$CustomerAddress==NULL)
 {
-    echo "빈 칸을 모두 채워주세요";
-    echo "<a href=join.html>back page</a>";
+    echo("<script>alert(\"Fill in all the blanks!\"); location.href='join.php';</script>");
     exit();
 }
 
@@ -22,8 +21,8 @@ $join="insert into customer (CustomerID, CustomerPW, Email, CustomerName, PhoneN
 
 
 if($conn->query($join)===TRUE){
-    echo("sign up success11</br>");
-    echo "<a href=login.php>로그인창으로</a>";
+    
+    echo("<script>alert(\"Success Join!\"); location.href='login.php';</script>"); 
 }
 else{
     echo "Error: " . $sql . "<br>" . $conn->error;

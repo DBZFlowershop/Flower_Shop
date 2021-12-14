@@ -1,21 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php
-session_start();
-if(isset($_SESSION['CustomerID']))
-{
-  $user = 'href=logout.php>Logout';
-
-}
-else{
-  $user = 'href=login.php>Login';
-}
-?>
-
 <head>
-	<title>Fall</title>
-	<link type="text/css" rel="stylesheet" href="mystyle.css">
+  <title>Login</title>
+  <link type="text/css" rel="stylesheet" href="mystyle.css">
 	<script src="javas.js"></script>
 	<meta charset="utf-8">
 	<!-- external file -->
@@ -29,8 +17,8 @@ else{
 	<link
 		href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:ital,wght@1,700&display=swap"
 		rel="stylesheet">
-<script type="text/javascript">
-function footerMouseIn() {
+  <script type="text/javascript">
+    function footerMouseIn() {
 		document.getElementById('team_name').innerText = "WebBarZo"
 	}
 
@@ -38,51 +26,52 @@ function footerMouseIn() {
 		document.getElementById('team_name').innerText = "WBZ"
 	}
 </script>
-	<style>
-	body {
-	      font-family: 'Montserrat', sans-serif;
-	    }
-
-	    .jumbotron {
-	      background-color: white;
-	    }
-
-	    .jumbotron span {
-	      font-size: 35px;
-	    }
-
-	    .navbar-toggler-icon {
-	      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-	    }
-
-	    .dropdown-menu {
-	      border: 1px solid pink;
-	    }
-
-	    .dropdown-item {
-	      color: grey;
-	    }
-
-	    .dropdown-item:hover {
-	      color: pink;
-	    }
-
-
-	    #footer {
-	      background-color: pink;
-	      color: white;
-	      letter-spacing: 2.5px;
-	    }		}
-	</style>
 </head>
+<script type="text/javascript">
+
+</script>
+<style media="screen">
+  body {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .jumbotron {
+    background-color: white;
+  }
+
+  .jumbotron span {
+    font-size: 35px;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
+
+  .dropdown-menu {
+    border: 1px solid pink;
+  }
+
+  .dropdown-item {
+    color: grey;
+  }
+
+  .dropdown-item:hover {
+    color: pink;
+  }
+
+
+  #footer {
+    background-color: pink;
+    color: white;
+    letter-spacing: 2.5px;
+  }
+</style>
 
 <body>
-	<div class="jumbotron text-center" style="margin-bottom:0">
+<div class="jumbotron text-center" style="margin-bottom:0">
     <span>FLOWER SHOP</span>
-  </div>
-  <!-- ************ header **********   -->
-  <!-- brand -->
-  <nav class="navbar navbar-expand-sm" id="nav">
+</div>
+<nav class="navbar navbar-expand-sm" id="nav">
     <a class="navbar-brand mr-auto" href="main.php">Home</a>
 
     <!-- collapse button -->
@@ -108,70 +97,33 @@ function footerMouseIn() {
           </div>
         </li>
       </ul>
-
       <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" <?php echo $user;?></a></li>
-        <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
+        <li class="nav-item"><a class="nav-link" href="join.php">Join</a></li>
       </ul>
     </div>
   </nav>
-	</nav>
-		
-</div>
-<!-- ************ header **********   -->
-<div style="text-align: center;">
-			<ul class="j_ul">
-				<li><a href="spring.php">Spring</a></li>
-				<li><a href="summer.php">Summer</a></li>
-				<li><a href="fall.php" style="font-size:20px; font-weight: bold;">Fall</a></li>
-				<li><a href="winter.php">Winter</a></li>
-			</ul>
-		</div>
+
+	<div class="row">
+  <div class="col-lg-2"></div>
+  <div class="col-lg-8">
+      <h3 style="text-align: center; padding-top: 30px;">Login</h3><br>
+      <form action="login_ck.php" method="POST" style="text-align:center; padding: 30px;">
+        <table class="j_table">
+          <tr class="j_tr">
+            <td class="j_td">ID</td>
+            <td class="j_td"><input type="text" placeholder="id" name="CustomerID" maxlength="20"></td>
+          </tr>
+          <tr class="j_tr">
+            <td class="j_td">PASSWORD</td>
+            <td class="j_td"><input type="password" placeholder="password" name="CustomerPW" maxlength="20"></td>
+          </tr>
+        </table>
+        <br>
+        <button type="submit">login</button>
+      </form>
   </div>
-	</div>
-
-	<div class="row" style="padding-top:30px; padding-bottom:30px;">
-	<div class="col-sm-1">
-	</div>
-	<div class="col-sm-10">
-		<div class="container-fluid bg-3 text-left">
-		<div class="row">
-  <?php
-  include_once 'dbconfig.php';
-
-  $dbname = "flowershop";
-  mysqli_select_db($conn, $dbname) or die('DB selection failed');
-  
-  $sql = "SELECT * FROM flower WHERE Category='Fall'; ";
-  $result = $conn->query($sql);
-
-  if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-      if($row["FlowerID"]==29||$row["FlowerID"]==33||$row["FlowerID"]==37){
-        echo "<div class=\"col-sm-4\">";
-      }
-      echo "<div class=\"seaitem\" onclick=\"location.href='detail1.php?id=".$row["FlowerID"]."'\">
-      <img class=\"seaflowerimg\" src=\"".$row["FlowerImg"]."\" alt=\"spring\">
-      <p class=\"situation\">".$row["FlowerName"]."</p>
-      <p class=\"price\">".$row["FlowerPrice"]." $</p>
-      </div>
-      <hr>";
-      if($row["FlowerID"]==32||$row["FlowerID"]==36||$row["FlowerID"]==40){
-        echo "</div>";
-      }
-    }
-  }else{
-    echo "0 results";
-  }
-  ?>
-  </div>
-		</div>
-	</div>
-
-	<div class="col-sm-1">
-	</div>
+  <div class="col-lg-2"></div>
 </div>
-
 
 <div class="container-fluid" id="footer" onmouseover="footerMouseIn()" onmouseout="footerMouseOut()">
     <div class="row">

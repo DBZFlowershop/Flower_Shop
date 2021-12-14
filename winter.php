@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+if(isset($_SESSION['CustomerID']))
+{
+  $user = 'href=logout.php>Logout';
+
+}
+else{
+  $user = 'href=login.php>Login';
+}
+?>
+
 <head>
   <title>Winter</title>
   <link type="text/css" rel="stylesheet" href="mystyle.css">
@@ -94,7 +106,7 @@
       </ul>
 
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="login.php">Logout</a></li>
+      <li class="nav-item"><a class="nav-link" <?php echo $user;?></a></li>
         <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
       </ul>
     </div>

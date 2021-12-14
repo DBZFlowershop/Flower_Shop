@@ -9,7 +9,7 @@ if(isset($_SESSION['CustomerID']))
 
 }
 else{
-  $user = 'href=login.html>Login';
+  $user = 'href=login.php>Login';
 }
 ?>
 

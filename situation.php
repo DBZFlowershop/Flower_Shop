@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php
+session_start();
+if(isset($_SESSION['CustomerID']))
+{
+  $user = 'href=logout.php>Logout';
+
+}
+else{
+  $user = 'href=login.php>Login';
+}
+?>
+
 <head>
   <title>Situation</title>
   <link type="text/css" rel="stylesheet" href="mystyle.css">
@@ -68,7 +80,7 @@
   <!-- ************ header **********   -->
   <!-- brand -->
   <nav class="navbar navbar-expand-sm" id="nav">
-    <a class="navbar-brand mr-auto" href="main.html">Home</a>
+    <a class="navbar-brand mr-auto" href="main.php">Home</a>
 
     <!-- collapse button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +91,7 @@
       <!-- link -->
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link" href="location.html" id="nav_location">Location</a>
+          <a class="nav-link" href="location.php" id="nav_location">Location</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="list.html">Flower</a>
@@ -87,16 +99,16 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle active" href="" data-toggle="dropdown">Recommend</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="situation.html">Contextual</a>
-            <a class="dropdown-item" href="spring.html">Seasonal</a>
-            <a class="dropdown-item" href="pday.html">Pday</a>
+            <a class="dropdown-item" href="situation.php">Contextual</a>
+            <a class="dropdown-item" href="spring.php">Seasonal</a>
+            <a class="dropdown-item" href="pday.php">Pday</a>
           </div>
         </li>
       </ul>
 
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
-        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+        <li class="nav-item"><a class="nav-link" <?php echo $user;?></a></li>
+        <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
       </ul>
     </div>
   </nav>
@@ -107,64 +119,41 @@
     <h3 style="text-align: center;">Contextual Recommend</h3><br>
     <div class="container-fluid bg-3 text-left">
 	<div class="row">
-      <div class="col-sm-6">
-        <div class="item" onclick="condetail(1)">
-          <img class="flowerimg" src="contex1.jpg" alt="spring">
-          <p class="situation">When visiting a person in a difficult situation or visiting a hospital</p>
-          <p class="flowername">Camomile</p>
-          <p class="price">25 $</p>
-        </div>
-        <hr>
-        <div class="item" onclick="condetail(2)">
-          <img class="flowerimg" src="contex2.jpg" alt="summer">
-          <p class="situation">When encouraging the future of good people</p>
-          <p class="flowername">Papiopedilloom</p>When you want to be happy and make up
-          <p class="price">35 $n</p>
-        </div>
-        <hr>
-        <div class="item" onclick="condetail(3)">
-          <img class="flowerimg" src="contex3.png" alt="fall">
-          <p class="situation">When you want to make peace</p>
-          <p class="flowername">Gongjakcho</p>
-          <p class="price">20 $</p>
-        </div>
-        <hr>
-        <div class="item" onclick="condetail(4)">
-          <img class="flowerimg" src="contex4.jpg" alt="winter">
-          <p class="situation">When cheering for a new beginning</p>
-          <p class="flowername">freesia</p>
-          <p class="price">25 $</p>
-        </div>
-      </div>
 
-      <div class="col-sm-6">
-        <div class="item" onclick="condetail(5)">
-          <img class="flowerimg" src="contex5.jpg" alt="fall">
-          <p class="situation">Mother's Day</p>
-          <p class="flowername">Carnation</p>
-          <p class="price">30 $</p>
-        </div>
-        <hr>
-        <div class="item" onclick="condetail(6)">
-          <img class="flowerimg" src="contex6.jpeg" alt="winter">
-          <p class="situation">Couple's anniversary</p>
-          <p class="flowername">Pink hydrange</p>
-          <p class="price">20 $</p>
-        </div>
-        <hr>
-        <div class="item" onclick="condetail(7)">
-          <img class="flowerimg" src="contex7.jpg" alt="christmas">
-          <p class="situation">Christmas</p>
-          <p class="flowername">Cotton</p>
-          <p class="price">25 $</p>
-        </div>
-        <hr>
-        <div class="item" onclick="condetail(8)">
-          <img class="flowerimg" src="contex8.jpg" alt="winter">
-          <p class="situation">Wedding</p>
-          <p class="flowername">Buque</p>
-          <p class="price">20 $</p>
-        </div>
+  <?php
+  include_once 'dbconfig.php';
+
+  $dbname = "flowershop";
+  mysqli_select_db($conn, $dbname) or die('DB selection failed');
+  
+  $sql = " SELECT flower.FlowerID, flower.FlowerImg, flower.FlowerName, flower.FlowerPrice, flowerexplanation.Explanation
+	          FROM flower
+	          INNER JOIN flowerexplanation 
+            ON flower.FlowerID=flowerexplanation.FlowerID;
+          ";
+  $result = $conn->query($sql);
+
+  if($result->num_rows > 0){
+    while($row = $result->fetch_assoc()){
+      if($row["FlowerID"]==1||$row["FlowerID"]==5){
+        echo "<div class=\"col-sm-6\">";
+      }
+      echo "<div class=\"item\" onclick=\"location.href='detail1.php?id=".$row["FlowerID"]."'\">
+      <img class=\"flowerimg\" src=\"".$row["FlowerImg"]."\" alt=\"spring\">
+      <p class=\"situation\">".$row["Explanation"]."</p>
+      <p class=\"flowername\">".$row["FlowerName"]."</p>
+      <p class=\"price\">".$row["FlowerPrice"]." $</p>
+      </div>
+      <hr>";
+      if($row["FlowerID"]==4||$row["FlowerID"]==8){
+        echo "</div>";
+      }
+    }
+  }else{
+    echo "0 results";
+  }
+  ?>
+      
       </div>
 	  </div>
     </div>

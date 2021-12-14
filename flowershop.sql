@@ -160,8 +160,8 @@ INSERT INTO Custom(CustomID, FlowerID, WrapColor, FlowerType, Size) VALUES
     (27, 075, 'Gray', 'Ranunculus', 'Large');
 
 CREATE TABLE Cart(
-	CartID varchar(15) auto_increment NOT NULL,
-    CustomerID INT REFERENCES Customer(CustomerID) ON DELETE CASCADE,
+	CartID INT auto_increment NOT NULL,
+    CustomerID VARCHAR(15) REFERENCES Customer(CustomerID) ON DELETE CASCADE,
     FlowerID INT UNSIGNED REFERENCES Flower(FlowerID),
     Quantity INT UNSIGNED NOT NULL DEFAULT 1,
     PRIMARY KEY(CartID)

@@ -11,6 +11,12 @@ CREATE TABLE Farm_Location(
     CONSTRAINT PK_FarmID PRIMARY KEY (FarmID)
 );
 
+INSERT INTO farm_location(FarmID, FarmAddress, FarmName, FarmNum) 
+VALUES(1, '36.603680, 127.501891', 'dasom-flower', 0432686633),
+(2, '36.704246, 127.427970','hosoo-flower farm', 043352845),
+(3, '36.611371, 127.479500', 'Cheongju flower farm', 0432654633),
+(4, '36.642143, 127.473226', 'flower deliver', 0432353593);
+
 CREATE TABLE Customer(
 	CustomerID varchar(15) NOT NULL, 
 	CustomerPW varchar(15) NOT NULL, 

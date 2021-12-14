@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
+<?php
+session_start();
+if(isset($_SESSION['CustomerID']))
+{
+  $user = 'href=logout.php>Logout';
+
+}
+else{
+  $user = 'href=login.php>Login';
+}
+?>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -216,7 +228,7 @@
       </ul>
 
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
+        <li class="nav-item"><a class="nav-link" <?php echo $user;?></a></li>
         <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
       </ul>
     </div>
@@ -239,7 +251,7 @@
   <div class="conainer-fluid text-center" id='loc_message'>
     <p>We want to be helpful not only to flower farmers in Cheongju but also to flower farmers all over the country.<br> <b>Let's light up the world by helping each other.</b></p>
   </div>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2MkflmqV-0azczmPKDs6Z9t54NYePUAI&callback=myMap"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_tMa0Dl-52yRKjC9zRbGBDfNlvlT4jf8&callback=myMap"></script>
 </body>
 
 </html>

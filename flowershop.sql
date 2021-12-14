@@ -122,11 +122,12 @@ INSERT INTO FlowerExplanation VALUES
     (008, 'Wedding');
 
 CREATE TABLE Custom(
-    CustomID INT NOT NULL PRIMARY KEY,
+    CustomID INT NOT NULL,
     FlowerID INT, 
     WrapColor VARCHAR(10) NOT NULL,
     FlowerType VARCHAR(20) NOT NULL,
     Size VARCHAR(10) NOT NULL,
+    PRIMARY KEY(CustomID)
 );
 
 INSERT INTO Custom(CustomID, FlowerID, WrapColor, FlowerType, Size) VALUES 
@@ -159,8 +160,9 @@ INSERT INTO Custom(CustomID, FlowerID, WrapColor, FlowerType, Size) VALUES
     (27, 075, 'Gray', 'Ranunculus', 'Large');
 
 CREATE TABLE Cart(
-    CartID INT NOT NULL PRIMARY KEY,
-    CustomerID INT USIGNED REFERENCES Customer(CustomerID) ON DELETE CASCADE,
+	CartID INT auto_increment NOT NULL,
+    CustomerID INT REFERENCES Customer(CustomerID) ON DELETE CASCADE,
     FlowerID INT UNSIGNED REFERENCES Flower(FlowerID),
-    Quantity INT UNSIGNED NOT NULL,
+    Quantity INT UNSIGNED NOT NULL DEFAULT 1,
+    PRIMARY KEY(CartID)
 );

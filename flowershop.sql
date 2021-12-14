@@ -172,3 +172,30 @@ CREATE TABLE Cart(
     Quantity INT UNSIGNED NOT NULL DEFAULT 1,
     PRIMARY KEY(CartID)
 );
+
+CREATE TABLE Card(
+    CustomerID VARCHAR(15) not null,
+    CardNumber varchar(30) not null,
+    ValidThru int unsigned not null,
+    CardPW int not null,
+    CVC int not null,
+    
+    primary key(CardNumber)
+);
+CREATE TABLE FOrder(
+    OrderID int auto_increment NOT NULL,
+    CustomerID VARCHAR(15) not null,
+    OrderDate varchar(15) not null,
+    Delivery varchar(15) not null,
+    PaymentMethod varchar(15) not null,
+    
+    primary key(OrderID)
+);
+
+CREATE TABLE OrderDetail(
+    OrderID INT,
+    FlowerID INT not null,
+    Quantity INT not null,
+    
+    primary key(OrderID)
+);

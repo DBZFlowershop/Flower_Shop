@@ -7,7 +7,7 @@ session_start();
 include_once 'dbconfig.php';
 
 // Select a database
-$dbname = "FlowerShop";
+$dbname = "flowerShop";
 mysqli_select_db($conn, $dbname) or die('DB selection failed');
 
 //아이디 가져오기
@@ -20,7 +20,115 @@ else{
   $user = 'href=login.php>Login';
 }
 ?>
+<?php
+$conn = new mysqli($servername, $username, $password);
+   $WrapColor = isset($_POST['WrapColor']) ? $_POST['WrapColor'] : false;
+   $FlowerType = isset($_POST['FlowerType']) ? $_POST['FlowerType'] : false;
+   $Size = isset($_POST['Size']) ? $_POST['Size'] : false;
+   $FlowerID = isset($_POST['FlowerID']) ? $_POST['FlowerID'] : false;
 
+
+   if ($WrapColor == 'Pink') {
+    if ($FlowerType == 'Rose') {
+      if ($Size == 'Small') {
+        $FlowerID=49;
+      } else if ($Size == 'Medium') {
+        $FlowerID=50;
+      } else if ($Size == 'Large') {
+        $FlowerID=51;
+      }
+    } else if ($FlowerType == 'Tulip') {
+      if ($Size == 'Small') {
+        $FlowerID=52;
+      } else if ($Size == 'Medium') {
+        $FlowerID=53;
+      } else if ($Size == 'Large') {
+        $FlowerID=54;
+      }
+    } else if ($FlowerType == 'Ranunculus') {
+      if ($Size == 'Small') {
+        $FlowerID=55;
+      } else if ($Size == 'Medium') {
+        $FlowerID=56;
+      } else if ($Size == 'Large') {
+        $FlowerID=57;
+      }
+    }
+  } else if ($WrapColor == 'White') {
+    if ($FlowerType == 'Rose') {
+      if ($Size == 'Small') {
+        $FlowerID=58;
+      } else if ($Size == 'Medium') {
+        $FlowerID=59;
+      } else if ($Size == 'Large') {
+        $FlowerID=60;
+      }
+    } else if ($FlowerType == 'Tulip') {
+      if ($Size == 'Small') {
+        $FlowerID=61;
+      } else if ($Size == 'Medium') {
+        $FlowerID=62;
+      } else if ($Size == 'Large') {
+        $FlowerID=63;
+      }
+    } else if ($FlowerType == 'Ranunculus') {
+      if ($Size == 'Small') {
+        $FlowerID=64;
+      } else if ($Size == 'Medium') {
+        $FlowerID=65;
+      } else if ($Size == 'Large') {
+        $FlowerID=66;
+      }
+    }
+  } else if ($WrapColor == 'Gray') {
+    if ($FlowerType == 'Rose') {
+      if ($Size == 'Small') {
+        $FlowerID=67;
+      } else if ($Size == 'Medium') {
+        $FlowerID=68;
+      } else if ($Size == 'Large') {
+        $FlowerID=69;
+      }
+    } else if ($FlowerType == 'Tulip') {
+      if ($Size == 'Small') {
+        $FlowerID=70;
+      } else if ($Size == 'Medium') {
+        $FlowerID=71;
+      } else if ($Size == 'Large') {
+        $FlowerID=72;
+      }
+    } else if ($FlowerType == 'Ranunculus') {
+      if ($Size == 'Small') {
+        $FlowerID=73;
+      } else if ($Size == 'Medium') {
+        $FlowerID=74;
+      } else if ($Size == 'Large') {
+        $FlowerID=75;
+      }
+    }
+  }
+  if($Size == 'Small'){
+    $price=30;
+  }else if($Size == 'Medium'){
+    $price=50;
+  }else if($Size == 'Large'){
+    $price=70;
+  }
+  echo $FlowerID;
+  echo $price;
+
+  $sql = "SELECT * FROM flower WHERE FlowerID=$FlowerID";
+  $res = $conn->query($sql);
+  
+  if ($res !== false && $res->num_rows > 0){
+    while($row = $num_result->fetch_assoc()){
+      $name=$res["FlowerName"];
+      echo $name;
+      $img=$res["FlowerImg"];
+      $price=$res["FlowerPrice"];
+      }
+  }
+  ?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">

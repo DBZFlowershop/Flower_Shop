@@ -98,7 +98,7 @@
 
         <!-- brand -->
         <nav class="navbar navbar-expand-sm" id="nav">
-            <a class="navbar-brand mr-auto" href="main.html">Home</a>
+            <a class="navbar-brand mr-auto" href="main.php">Home</a>
 
             <!-- collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
@@ -110,24 +110,24 @@
                 <!-- link -->
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="location.html" id="nav_location">Location</a>
+                        <a class="nav-link" href="location.php" id="nav_location">Location</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="list.html">Flower</a>
+                        <a class="nav-link active" href="list.php">Flower</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">Recommend</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="situation.html">Contextual</a>
-                            <a class="dropdown-item" href="spring.html">Seasonal</a>
-                            <a class="dropdown-item" href="pday.html">Pday</a>
+                            <a class="dropdown-item" href="situation.php">Contextual</a>
+                            <a class="dropdown-item" href="spring.php">Seasonal</a>
+                            <a class="dropdown-item" href="pday.php">Pday</a>
                         </div>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
                 </ul>
             </div>
         </nav>
@@ -155,7 +155,7 @@
             <div class="row">
                 <div class="col-4">
                     <div class="card">
-                        <img id="img" src="list_middle1.jpg" onclick="location.href = 'create.html'" />
+                        <img id="img" src="list_middle1.jpg" onclick="location.href = 'create.php'" />
                         <div class="card-body">
                             <h5 class="card-title" id="title">Create Bouquet</h5><br>
 
@@ -164,7 +164,7 @@
                 </div>
                 <div class="col-4">
                     <div class="card">
-                        <img id="img" src="best.png" onclick="location.href = 'best.html'" />
+                        <img id="img" src="best.png" onclick="location.href = 'best.php'" />
                         <div class="card-body">
                             <h5 class="card-title" id="title">Best Item</h5><br>
                         </div>
@@ -172,7 +172,7 @@
                 </div>
                 <div class="col-4">
                     <div class="card">
-                        <img id="img" src="list_middle3.jpg" onclick="location.href = 'detail.html'" />
+                        <img id="img" src="list_middle3.jpg" onclick="location.href = 'detail.php'" />
                         <div class="card-body">
                             <h5 class="card-title" id="title">Bouquet of money</h5><br>
                         </div>

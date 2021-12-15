@@ -399,7 +399,7 @@ $FlowerID = 'FlowerID';
 
             .m_ul li {
                 float: left;
-                margin-right: 100px;
+                margin: auto;
                 font-weight: bold;
                 color: rgb(124, 26, 236);
             }
@@ -470,7 +470,7 @@ $FlowerID = 'FlowerID';
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="createcart.php">Cart</a>
+                        <a class="nav-link" href="cart.php">Cart</a>
                     </li>
                 </ul>
             </div>

@@ -254,7 +254,7 @@ $quantity=$_GET['quantity'];
 
                 </table>
                 <hr>
-                <form method="post" action="cart_modifyinfo.php?<?php echo "name=".$item?>&<?php echo "quantity=".$quantity?>">">
+                <form method="post" action="cart_modifyinfo.php?<?php echo "name=".$item?>&<?php echo "quantity=".$quantity?>">
 
                     <table class="j_table">
                         <tr class="j_tr">

@@ -200,7 +200,7 @@ else{
     <span>Flowers always make people better, happier and more helpful; they are sunshine, food, and medicine to the soul.</i><br /> - Luther Burbank</span><br />
   </div>
   <nav class="navbar navbar-expand-sm" id="nav">
-    <a class="navbar-brand mr-auto" href="main.html">Home</a>
+    <a class="navbar-brand mr-auto" href="main.php">Home</a>
 
     <!-- collapse button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar"
@@ -212,24 +212,24 @@ else{
       <!-- link -->
       <ul class="navbar-nav mx-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="location.html" id="nav_location">Location</a>
+          <a class="nav-link active" href="location.php" id="nav_location">Location</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="list.html">Flower</a>
+          <a class="nav-link" href="list.php">Flower</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">Recommend</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="situation.html">Contextual</a>
-            <a class="dropdown-item" href="spring.html">Seasonal</a>
-            <a class="dropdown-item" href="pday.html">Pday</a>
+            <a class="dropdown-item" href="situation.php">Contextual</a>
+            <a class="dropdown-item" href="spring.php">Seasonal</a>
+            <a class="dropdown-item" href="pday.php">Pday</a>
           </div>
         </li>
       </ul>
 
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" <?php echo $user;?></a></li>
-        <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+        <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
       </ul>
     </div>
   </nav>

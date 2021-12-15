@@ -110,7 +110,7 @@ function footerMouseIn() {
       </ul>
 
       <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" <?php echo $user;?></a></li>
+        <li class="nav-item"><a class="nav-link" <?php echo $user;?></a></li>
         <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
       </ul>
     </div>

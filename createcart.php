@@ -110,8 +110,6 @@ mysqli_select_db($conn, $dbname) or die('DB selection failed');
   $img=$row["FlowerImg"];
   $price=$row["FlowerPrice"];
 
-  echo $name;
-
   $sql = "SELECT * FROM Cart; ";
   $result = $conn->query($sql);
 

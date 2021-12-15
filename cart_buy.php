@@ -18,7 +18,7 @@ $dbname = "FlowerShop";
 mysqli_select_db($conn, $dbname) or die('DB selection failed');
 $itemcount= $_GET['itemcount'];
 $item=$_GET['item'];
-
+$user=$_SESSION['CustomerID'];
 
   
 ?>
@@ -199,7 +199,7 @@ $item=$_GET['item'];
                     </tr>
                     <?php
         //유저ID를 갖고있는 attribute개수
-      $from_user_sql = "SELECT * FROM Cart WHERE CartID IN ($item);"; 
+      $from_user_sql = "SELECT * FROM Cart WHERE CustomerID ='$user';"; 
 
       //쿼리 연결하기
       if($num_result=$conn->query($from_user_sql)){
@@ -213,26 +213,24 @@ $item=$_GET['item'];
       //목록 만들기 시작
       if(!empty($num_result->num_rows) && $num_result->num_rows > 0){
         while($row = $num_result->fetch_assoc()){ //한줄씩
-
           /*꽃 ID, ID로 참조할 이미지, 이름, 가격 변수 설정 */
           //이름, 가격, 이미지 빼오기
-          $flowerInfo_sql = "SELECT FlowerName, FlowerPrice, FlowerImg FROM Flower WHERE FlowerID=$row[FlowerID]";
-
+          $flowerInfo_sql = "SELECT FlowerName, FlowerPrice, FlowerImg FROM flower WHERE FlowerID=$row[FlowerID]";
+          
           //쿼리 연결하기
           if($conn->query($flowerInfo_sql)){
             $flowerInfo_result=$conn->query($flowerInfo_sql); //쿼리문 연결후 결과 받기
           }else{
             echo "Error: " . $flowerInfo_sql . "<br>" . $conn->error;
           }
-
+          $quantity = $row["Quantity"];
           if(!empty($flowerInfo_result->num_rows) && $flowerInfo_result->num_rows > 0){
-            while($row2 = $flowerInfo_result->fetch_assoc()){ //한줄씩
-              $image = $row2["FlowerImg"];
-              $name = $row2["FlowerName"];
-              $quantity = $row["Quantity"];
-              $price = $row2["FlowerPrice"]*$quantity;
+            while($row = $flowerInfo_result->fetch_assoc()){ //한줄씩
+              $image = $row["FlowerImg"];
+              $name = $row["FlowerName"];
+              
+              $price = $row["FlowerPrice"]*$quantity;
               //테이블만들기
-
               echo"
               <tr class=\"j_tr\">
                         <td class=\"j_td\"><img
@@ -241,8 +239,8 @@ $item=$_GET['item'];
                             alt=\"spring\"
                             style=\"width:100px; height:110px; text-align:left;\"></td>
                         <td id=\"buyname\">".$name."</td>
-                        <td id=\"buyprice\">". $price."</td>
-                        <td id=\"buycount\">1</td>
+                        <td id=\"buyprice\">".$price."</td>
+                        <td id=\"buycount\">".$quantity."</td>
                     </tr>
               ";
               $i++;

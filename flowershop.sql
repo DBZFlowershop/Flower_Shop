@@ -200,3 +200,10 @@ CREATE TABLE OrderDetail(
     
     primary key(OrderDetailID)
 );
+
+CREATE VIEW wishlist 
+AS SELECT Cart.CustomerID, Flower.FlowerImg, Flower.FlowerName, Flower.Category 
+FROM Flower, Cart
+WHERE Flower.FlowerID=Cart.FlowerID;
+
+

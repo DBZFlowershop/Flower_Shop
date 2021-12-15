@@ -159,6 +159,7 @@ else{
 
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" <?php echo $user;?></a></li>
+        <li class="nav-item"><a class="nav-link" href="wishlist.php">Wish</a></li>
         <li class="nav-item"><a class="nav-link active" href="cart.php">Cart</a></li>
       </ul>
     </div>
